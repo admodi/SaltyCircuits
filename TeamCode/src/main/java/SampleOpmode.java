@@ -54,7 +54,11 @@ public class SampleOpmode extends LinearOpMode{
 
     // Declare OpMode members.
     private ElapsedTime runtime = new ElapsedTime();
-    private DcMotor motorTest = null;
+    private DcMotor frontRight = null;
+    private DcMotor backRight = null;
+    private DcMotor frontLeft = null;
+    private DcMotor backLeft = null;
+
 
 
     @Override
@@ -65,12 +69,18 @@ public class SampleOpmode extends LinearOpMode{
         // Initialize the hardware variables. Note that the strings used here as parameters
         // to 'get' must correspond to the names assigned during the robot configuration
         // step (using the FTC Robot Controller app on the phone).
-        motorTest  = hardwareMap.get(DcMotor.class, "Motortest");
-
+        frontRight  = hardwareMap.get(DcMotor.class, "Frontright");
+        backRight = hardwareMap.get(DcMotor.class, "Backright");
+        frontLeft= hardwareMap.get (DcMotor.class, "Frontleft");
+        backLeft= hardwareMap.get (DcMotor.class, "Backleft");
 
         // Most robots need the motor on one side to be reversed to drive forward
         // Reverse the motor that runs backwards when connected directly to the battery
-        motorTest.setDirection(DcMotor.Direction.FORWARD);
+        frontRight.setDirection(DcMotor.Direction.FORWARD);
+        backRight.setDirection(DcMotor.Direction.FORWARD);
+        frontLeft.setDirection(DcMotor.Direction.REVERSE);
+        backLeft.setDirection(DcMotor.Direction.REVERSE);
+
 
 
         // Wait for the game to start (driver presses PLAY)
@@ -89,8 +99,8 @@ public class SampleOpmode extends LinearOpMode{
 
             // POV Mode uses left stick to go forward, and right stick to turn.
             // - This uses basic math to combine motions and is easier to drive straight.
-            double drive = 30;//-gamepad1.left_stick_y;
-            double turn  =  10;//gamepad1.right_stick_x;
+            double drive = -gamepad1.left_stick_y;
+            double turn  =  gamepad1.right_stick_x;
             leftPower    = Range.clip(drive + turn, -1.0, 1.0) ;
             rightPower   = Range.clip(drive - turn, -1.0, 1.0) ;
 
@@ -100,7 +110,11 @@ public class SampleOpmode extends LinearOpMode{
             // rightPower = -gamepad1.right_stick_y ;
 
             // Send calculated power to wheels
-            motorTest.setPower(leftPower);
+            frontRight.setPower(leftPower);
+            backRight.setPower(rightPower);
+            frontLeft.setPower(rightPower);
+            backLeft.setPower(leftPower);
+
 
 
             // Show the elapsed game time and wheel power.
