@@ -1,4 +1,4 @@
-/* Copyright (c) 2017 FIRST. All rights reserved.
+package org.firstinspires.ftc.teamcode;/* Copyright (c) 2017 FIRST. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
  * are permitted (subject to the limitations in the disclaimer below) provided that
@@ -27,10 +27,10 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Range;
 
@@ -48,9 +48,9 @@ import com.qualcomm.robotcore.util.Range;
  * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
  */
 
-@TeleOp(name="Basic: Linear OpMode", group="Linear Opmode")
+@TeleOp(name="Final_DR", group="Linear Opmode")
 //@Disabled
-public class SampleOpmode extends LinearOpMode{
+public class Final_DR extends LinearOpMode{
 
     // Declare OpMode members.
     private ElapsedTime runtime = new ElapsedTime();
@@ -99,10 +99,14 @@ public class SampleOpmode extends LinearOpMode{
             // POV Mode uses left stick to go forward, and right stick to turn.
             // - This uses basic math to combine motions and is easier to drive straight.
             double drive = -gamepad1.left_stick_y;
-            double strafe  =  gamepad1.right_stick_x;
-            double turn = gamepad1.right_stick_y;
+            double strafe  =  gamepad1.right_trigger;
+            double strafe1 = gamepad1.left_trigger;
+            double turn = gamepad1.right_stick_x;
             leftPower    = Range.clip(drive + strafe, -1.0, 1.0) ;
             rightPower   = Range.clip(drive - strafe, -1.0, 1.0) ;
+            double turnPower = Range.clip(turn, -1.0, 1.0);
+            double  rightStrafe = Range.clip(drive + strafe1, -1.0, 1.0);
+            double  rightStrafe1 = Range.clip (drive - strafe1,-1.0, 1.0);
 
 
 
@@ -112,10 +116,20 @@ public class SampleOpmode extends LinearOpMode{
             // rightPower = -gamepad1.right_stick_y ;
 
             // Send calculated power to wheels
-            frontRight.setPower(leftPower);
-            backRight.setPower(rightPower);
-            frontLeft.setPower(rightPower);
-            backLeft.setPower(leftPower);
+            frontRight.setPower(rightPower);
+            backRight.setPower(leftPower);
+            frontLeft.setPower(leftPower);
+            backLeft.setPower(rightPower);
+
+            frontRight.setPower(-turnPower);
+            backLeft.setPower(turnPower);
+            backRight.setPower(-turnPower);
+            frontLeft.setPower(turnPower);
+
+            frontRight.setPower(rightStrafe);
+            backRight.setPower(rightStrafe1);
+            frontLeft.setPower(rightStrafe1);
+            backLeft.setPower(rightStrafe);
 
 
 
