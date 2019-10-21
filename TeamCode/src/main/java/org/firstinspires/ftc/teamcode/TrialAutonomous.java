@@ -55,7 +55,7 @@ public class  TrialAutonomous extends LinearOpMode{
     private DcMotor frontLeft = null;
     private DcMotor backLeft = null;
 
-    // Declare OpMode members.
+    // Declare OpMode Members.
 
     @Override
     public void runOpMode() throws InterruptedException {
