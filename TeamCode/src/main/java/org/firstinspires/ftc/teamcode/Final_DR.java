@@ -66,7 +66,7 @@ public class Final_DR extends LinearOpMode{
         telemetry.addData("Status", "Initialized");
         telemetry.update();
 
-        // Initialize the hardware variables. Note that the strings used here as parameters
+        // initialize the hardware variables. Note that the strings used here as parameters
         // to 'get' must correspond to the names assigned during the robot configuration
         // step (using the FTC Robot Controller app on the phone).
         frontRight  = hardwareMap.get(DcMotor.class, "Frontright");
