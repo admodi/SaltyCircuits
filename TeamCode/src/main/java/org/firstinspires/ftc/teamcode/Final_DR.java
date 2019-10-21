@@ -113,7 +113,7 @@ public class Final_DR extends LinearOpMode{
             // Tank Mode uses one stick to control each wheel.
             // - This requires no math, but it is hard to drive forward slowly and keep straight.
             // leftPower  = -gamepad1.left_stick_y ;
-            // rightPower = -gamepad1.right_stick_yy ;
+            // rightPower = -gamepad1.right_stick_y ;
 
             // Send calculated power to wheels
             frontRight.setPower(rightPower);
