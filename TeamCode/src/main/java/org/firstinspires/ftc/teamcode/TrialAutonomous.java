@@ -48,7 +48,7 @@ import com.qualcomm.robotcore.hardware.DcMotorController;
 
 @Autonomous(name="trialAutonomous", group="Linear Opmode")
 //@Disabled
-public class TrialAutonomous extends LinearOpMode{
+public class  TrialAutonomous extends LinearOpMode{
 
     private DcMotor frontRight = null;
     private DcMotor backRight = null;
